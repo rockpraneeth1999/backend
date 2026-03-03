@@ -4,25 +4,33 @@ pipeline {
     stages {
 
         stage('Compile') {
-            mvn clean compile
+            steps {
+                sh 'mvn clean compile'
+            }
         }
 
         stage('Test') {
             steps {
-                mvn test
+                sh 'mvn test'
             }
         }
 
         stage('Build') {
-            mvn package
+            steps {
+                sh 'mvn package -DskipTests'
+            }
         }
 
         stage('Docker Image Build') {
-            sh 'docker build -t backend-app'
+            steps {
+                sh 'docker build -t backend-app .'
+            }
         }
 
-        stage('Run container') {
-            sh 'docker run -d --name java-backend -p 8081:8081 backend-app'
+        stage('Run Container') {
+            steps {
+                sh 'docker run -d --name java-backend -p 8081:8081 backend-app'
+            }
         }
     }
 }
