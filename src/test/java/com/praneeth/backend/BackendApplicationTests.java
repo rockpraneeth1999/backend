@@ -1,13 +1,15 @@
 package com.praneeth.backend;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest
 class BackendApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void testWelcomeMethod() {
+		HomeController controller = new HomeController();
+		String result = controller.welcome();
+		assertEquals("<html><body><h1>Welcome to backend app</h1></body></html>", result);
 	}
 
 }
