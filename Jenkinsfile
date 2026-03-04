@@ -29,7 +29,7 @@ pipeline {
 
         stage('Run Container') {
             steps {
-                bat 'docker run -d --name java-backend -p 8081:8081 backend-app'
+                bat 'docker run -d --name java-backend -p 8080:8080 backend-app'
             }
         }
     }
